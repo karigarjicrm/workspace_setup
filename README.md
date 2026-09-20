@@ -16,6 +16,9 @@ karigarji_workspace/                        # Meta-Orchestrator Repository (Git 
 ├── .agents/
 │   └── rules/
 │       └── rulesRedirect.md                # Global router directing agents to project rules
+├── templates/                              # Ready-to-copy .agents starter blueprints
+│   ├── backend-nest/.agents/               # Production NestJS agent configuration
+│   └── frontend-react/.agents/             # Production React/Vite agent configuration
 ├── tasks/                                  # Ephemeral runtime task tracking (ignored in Git)
 │   └── .gitkeep                            # Preserves folder shell in Git
 │
@@ -32,7 +35,25 @@ karigarji_workspace/                        # Meta-Orchestrator Repository (Git 
 
 ---
 
-## 2. Core Agent Guidelines (`AGENTS.md`)
+## 2. Ready-to-Use Blueprints (`templates/`)
+
+To quickly bootstrap agent support in a new or existing repository, copy the corresponding starter blueprint:
+
+* **NestJS / Node.js Backend**:
+  ```bash
+  cp -r templates/backend-nest/.agents path/to/your_backend_project/
+  ```
+  Includes: 3-tier services, pragmatic repositories, domain events, thin controllers, Snowflake IDs, validation schemas, and suggestions registry.
+
+* **React / Vite Frontend**:
+  ```bash
+  cp -r templates/frontend-react/.agents path/to/your_frontend_project/
+  ```
+  Includes: Component hierarchy, state management, API service conventions, error boundaries, and suggestions registry.
+
+---
+
+## 3. Core Agent Guidelines (`AGENTS.md`)
 
 All agents operating in this workspace strictly adhere to the guidelines codified in [`AGENTS.md`](./AGENTS.md):
 1. **Clarification & Single-Question Focus**: Ask questions one at a time with structured choices; never assume ambiguous requirements.
@@ -45,12 +66,12 @@ All agents operating in this workspace strictly adhere to the guidelines codifie
 
 ---
 
-## 3. How to Setup `.agents/` Inside Any Project Folder
+## 4. How to Setup `.agents/` Inside Any Project Folder
 
-When adding a new service or repository to this workspace, follow this 4-step setup guide:
+When adding a new service or repository to this workspace:
 
-### Step 1: Create the `.agents/` Directory Structure
-Inside the child project folder, create:
+### Step 1: Copy or Create the `.agents/` Structure
+Copy from [`templates/`](./templates/) or scaffold manually:
 ```text
 <project-folder>/
 └── .agents/
@@ -90,7 +111,7 @@ Open the workspace router at [`.agents/rules/rulesRedirect.md`](./.agents/rules/
 
 ---
 
-## 4. Task Execution Protocol (`tasks/`)
+## 5. Task Execution Protocol (`tasks/`)
 
 Every primary task runs inside an isolated directory: `tasks/<task-name>/`.
 
@@ -101,7 +122,7 @@ Because tasks are ephemeral, the root `.gitignore` ignores all task directories 
 
 ---
 
-## 5. Allowlist Git Strategy
+## 6. Allowlist Git Strategy
 
 The root `.gitignore` employs a strict **Deny-All / Allowlist** strategy:
 * `/*`: Ignores everything at the root by default.
@@ -110,6 +131,7 @@ The root `.gitignore` employs a strict **Deny-All / Allowlist** strategy:
   * `README.md`
   * `.gitignore`
   * `.agents/`
+  * `templates/`
   * `tasks/.gitkeep`
 
 Child repositories (`karigarji_server`, `karigarji_admin_panel`, and any future cloned services) are automatically ignored by default, ensuring zero accidental commits to the meta-orchestrator.
