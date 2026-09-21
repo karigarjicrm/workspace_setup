@@ -63,6 +63,8 @@ All agents operating in this workspace strictly adhere to the guidelines codifie
 5. **Continuous Rule Synchronization**: Automatically sync architectural decisions into `.agents/rules/*` so documentation never drifts.
 6. **Critical Engineering Partnership (Zero Sycophancy)**: Rationally challenge flawed designs, debate trade-offs, and point out antipatterns.
 7. **Persistent Suggestions Registry**: Record out-of-scope improvements in `<project>/.agents/suggestions.md` so they are never lost when `tasks/` are cleared.
+8. **Strict Database & Prisma Safety**: Never execute database migrations (`prisma migrate dev`, `prisma db push`, etc.) or database-altering commands programmatically without explicit confirmation.
+
 
 ---
 

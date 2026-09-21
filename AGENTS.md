@@ -42,3 +42,8 @@
   - Frontend: `karigarji_admin_panel/.agents/suggestions.md`
 - Never mix project suggestions into a shared workspace file, and never store long-term suggestions exclusively in temporary task directories (`tasks/`) to prevent data loss when task directories are cleaned up or deleted.
 - Each suggestion must specify an ID, Target Domain/Component, Rationale, Priority, Status, and Originating Task context.
+
+## 8. Database & Prisma Safety (Strict Manual Control)
+
+- **Zero Automated Migrations**: Never execute database migrations (`npx prisma migrate dev`, `npx prisma db push`, `npx prisma migrate reset`, `npx prisma migrate deploy`) or run any database-altering commands programmatically without explicit user confirmation.
+- **Mandatory Pre-Command Prompting**: Always prompt the user before executing any Prisma or database-touching command to ensure migration history remains 100% clean, controlled, and predictable.
