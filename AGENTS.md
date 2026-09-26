@@ -47,3 +47,14 @@
 
 - **Zero Automated Migrations**: Never execute database migrations (`npx prisma migrate dev`, `npx prisma db push`, `npx prisma migrate reset`, `npx prisma migrate deploy`) or run any database-altering commands programmatically without explicit user confirmation.
 - **Mandatory Pre-Command Prompting**: Always prompt the user before executing any Prisma or database-touching command to ensure migration history remains 100% clean, controlled, and predictable.
+
+## 9. Mandatory Self-Audit & Proactive Zero-Debt Handoff
+
+- **Continuous Self-Audit**: Before completing any task phase or handing back execution to the user, the agent MUST run an exhaustive self-audit against all established workspace rules and standards:
+  - **Zero Free-Text Magic Strings**: All user-facing messages, validation errors, and domain error codes must consume domain-scoped constants (`*Messages.ts`).
+  - **Zero Raw Framework HTTP Exceptions**: No direct NestJS HTTP exceptions (`BadRequestException`, `NotFoundException`, `UnauthorizedException`, etc.) in domain services or guards; all failures must be explicit domain exceptions extending `BaseDomainException` and residing in matching 1:1 service-scoped `<serviceName>.exceptions.ts` files.
+  - **Clean 3-Tier Return Contracts**: Domain services must return pure domain data or `Promise<void>`—never fabricating HTTP pseudo-envelopes (`{ success: true }`, `{ message: '...' }`).
+  - **OpenAPI / Swagger Envelope Synchronization**: Composite decorators (`@ApiSuccessResponseEnvelope`, `@ApiAuthResponses`, `@ApiDomainErrorResponse`) must be applied across all controller endpoints with proper pagination flags and DTO types.
+  - **Automated Verification**: Build compilation (`npm run build`) and test suites (`npm test`, `npm run test:flow:local`) must pass with 0 failures before any handoff.
+  - **Authoritative Rules & Docs Sync**: Rules (`.agents/rules/*`), context files, and task trackers (`tasks/`) must be updated in tandem with code changes.
+- **Proactive Fix-On-The-Go**: If any violations, regressions, drift, or omissions are detected during self-audit, the agent MUST fix them immediately within the active task before reporting completion to the user. Never leave standard violations or tech debt behind for the user to discover.
