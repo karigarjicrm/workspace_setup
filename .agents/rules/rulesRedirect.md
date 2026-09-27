@@ -13,3 +13,7 @@ When operating inside this parent folder, always read and follow the specific co
   - [Frontend Development Rules](file:///Users/apple/Documents/Yaantriki/karigarji_workspace/karigarji_admin_panel/.agents/rules/frontendRules.md)
   - [React & State Rules](file:///Users/apple/Documents/Yaantriki/karigarji_workspace/karigarji_admin_panel/.agents/rules/reactRules.md)
   - [Suggestions Registry](file:///Users/apple/Documents/Yaantriki/karigarji_workspace/karigarji_admin_panel/.agents/suggestions.md): Persistent frontend architectural backlog and optimizations.
+- **Customer Mobile App Repository Rules (karigarji\_customer)**:
+  - [Project Context](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_customer/.agents/rules/projectContext.md): System goals, mobile architecture, Expo SDK 57, Expo Router, and structural map.
+  - [Suggestions Registry](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_customer/.agents/suggestions.md): Persistent customer mobile architectural backlog and optimizations.
+
