@@ -11,6 +11,7 @@ When operating inside this parent folder, always read and follow the specific co
   - [Project Context](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_admin_panel/.agents/rules/projectContext.md)
   - [General Workspace Rules](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_admin_panel/.agents/rules/generalRules.md)
   - [Frontend Development Rules](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_admin_panel/.agents/rules/frontendRules.md)
+  - [Form Handling & Radix UI Rules](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_admin_panel/.agents/rules/formRules.md): 3-tier form separation, native 120fps register bindings, Radix `<Controller>` standards, dynamic key reset, and backend error mapping.
   - [React & State Rules](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_admin_panel/.agents/rules/reactRules.md)
   - [Suggestions Registry](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_admin_panel/.agents/suggestions.md): Persistent frontend architectural backlog and optimizations.
 - **Customer Mobile App Repository Rules (karigarji\_customer)**:

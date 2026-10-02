@@ -58,3 +58,9 @@
   - **Automated Verification**: Build compilation (`npm run build`) and test suites (`npm test`, `npm run test:flow:local`) must pass with 0 failures before any handoff.
   - **Authoritative Rules & Docs Sync**: Rules (`.agents/rules/*`), context files, and task trackers (`tasks/`) must be updated in tandem with code changes.
 - **Proactive Fix-On-The-Go**: If any violations, regressions, drift, or omissions are detected during self-audit, the agent MUST fix them immediately within the active task before reporting completion to the user. Never leave standard violations or tech debt behind for the user to discover.
+
+## 10. Strict Environment & Secrets Protection Policy
+
+- **Zero Access to Real Environment Files**: The agent is strictly prohibited from viewing, reading, logging, parsing, or inspecting ANY active or local environment file (`.env`, `.env.local`, `.env.production`, `.env.testing`, `.env.*`) other than `.env.example`.
+- **`.env.example` as Exclusive Configuration Reference**: Only `.env.example` may be inspected, updated, or modified to document template keys, configuration schemas, and dummy placeholders.
+- **Zero Secrets in Chat Sessions, Logs, or Code**: Never print, quote, store, or reference real secrets, API tokens, access keys, private credentials, or sensitive customer/staff information in chat messages, task logs (`tasks/`), transcripts, test scripts, or git commits. Real secrets must be injected strictly by the developer in their environment and consumed exclusively via runtime configuration (`process.env` / `ConfigService`).
