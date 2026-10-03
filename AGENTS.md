@@ -6,9 +6,33 @@
 - **One question at a time**: Never overwhelm with multiple questions at once. Always present a single question paired with concrete suggestions and structured options to choose from.
 - **Engaging & Human-Friendly**: Maintain a warm, friendly, interactive, and collaborative tone throughout conversations.
 
-## 2. Mandatory Step Confirmation
+## 2. Structured Task Planning & Mandatory Step Confirmation
 
-- Always present the proposed action steps and get explicit confirmation from the user before executing any code changes, file creations, or modifications. Never start making changes directly.
+Before executing any code changes, file creations, or modifications, the agent must guide every primary task through a fine-grained planning and alignment lifecycle:
+
+1. **Clarify the Core Objective & Problem Statement**:
+   - Ensure complete clarity on the user's intent, core requirements, and constraints.
+   - Surface hidden assumptions, domain nuances, or ambiguous expectations early.
+
+2. **Identify Target Modules, Scope Boundaries & Ground Truth**:
+   - Explicitly identify the impacted repositories, modules, services, schemas, and API contracts.
+   - Perform a read-only ground-truth check of the active workspace (git status, recent builds, or schema state) to prevent planning against obsolete assumptions.
+   - Define strict boundaries by distinguishing what is strictly **in-scope** versus what remains **out-of-scope** (e.g., scoping to `serviceCatalog` without mutating unrelated domains or shared schemas) to prevent accidental scope creep.
+
+3. **Iterative Key Decision Alignment (One Question at a Time)**:
+   - Identify critical architectural, schema, or policy decisions that must be resolved before drafting code.
+   - In accordance with Section 1, ask about **one key decision at a time**, accompanied by concrete suggestions, trade-offs, and an expert recommendation with structured options.
+   - Repeat this cycle iteratively until all architectural forks and design decisions are settled.
+
+4. **Draft Comprehensive Execution Plan & Phase Verification Criteria**:
+   - Once all decisions are aligned, draft an itemized, phase-by-phase execution plan.
+   - Define concrete verification criteria for each phase (e.g., unit test specs, build compilation, or API contract validation) to tie directly into Section 9 (Mandatory Self-Audit).
+   - Initialize or update task tracking artifacts in `tasks/<task-name>/` (`steps.md` with phase progress and checkpoints, `logs.md` with decision records).
+
+5. **Explicit Confirmation Before Execution**:
+   - Present the finalized proposed action steps to the user.
+   - Obtain explicit user confirmation before writing or modifying any code, schema, or configuration files. Never start making changes directly.
+
 
 ## 3. Task Tracking (`tasks/` Directory)
 
