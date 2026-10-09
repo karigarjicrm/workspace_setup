@@ -88,3 +88,18 @@ Before executing any code changes, file creations, or modifications, the agent m
 - **Zero Access to Real Environment Files**: The agent is strictly prohibited from viewing, reading, logging, parsing, or inspecting ANY active or local environment file (`.env`, `.env.local`, `.env.production`, `.env.testing`, `.env.*`) other than `.env.example`.
 - **`.env.example` as Exclusive Configuration Reference**: Only `.env.example` may be inspected, updated, or modified to document template keys, configuration schemas, and dummy placeholders.
 - **Zero Secrets in Chat Sessions, Logs, or Code**: Never print, quote, store, or reference real secrets, API tokens, access keys, private credentials, or sensitive customer/staff information in chat messages, task logs (`tasks/`), transcripts, test scripts, or git commits. Real secrets must be injected strictly by the developer in their environment and consumed exclusively via runtime configuration (`process.env` / `ConfigService`).
+
+## 11. Strict Architectural & Layer Boundary Isolation (Zero Boundary Bleed)
+
+- **Unidirectional Hierarchy**: Execution flow and dependencies must strictly move downward through defined architectural layers. A lower layer must never import, call, or depend on an upper layer (`Controller` -> `Domain Service` -> `Pure Logic` / `Domain Policy` / `Repository` / `Prisma`).
+- **Zero Cross-Domain Scope Creep**: Every domain module must maintain a single, tightly defined bounded context. Modules must never absorb adjacent domains (e.g., `auth` handles credentials, tokens, and sessions; it must never manage user profiles, customer addresses, or RBAC role configuration).
+- **Horizontal Decoupling**: Modules must never reach into another module's internal database models or private services directly. Cross-domain interactions must happen strictly via **Domain Events (`EventEmitter2`)** for asynchronous operations, or via **Exported Service Contracts** explicitly declared in the target domain module's exports.
+- **Multi-Module Grouping Boundaries**: When a domain spans multiple subdomains or actor perspectives (e.g. `auth` or `serviceCatalog`), shared functionality across subdomains must be encapsulated in a domain-scoped `common/` kernel (`authCommon.module.ts`). Subdomains must never import each other directly (zero sibling coupling).
+- **Single Responsibility per File Role**: Every file suffix (`.logic.ts`, `.policy.ts`, `.service.ts`, `.repository.ts`, etc.) represents an immutable contract. Business logic belongs in `.logic.ts` (zero DB I/O), policy checks in `.policy.ts`, persistence orchestration in `.service.ts`, and HTTP routing in `.controller.ts`.
+
+## 12. Spoken Voice Protocol (macOS TTS)
+
+The agent MUST ALWAYS trigger a concise spoken voice summary using the native macOS `say` command (e.g. `say "..." &` in the background) in parallel with every written markdown response—including general conversations, clarifying questions, execution plans, status checks, and task summaries.
+
+
+
