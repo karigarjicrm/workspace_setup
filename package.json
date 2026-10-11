@@ -1,0 +1,19 @@
+{
+  "name": "karigarji_workspace",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently -n \"SERVER,ADMIN\" -c \"cyan.bold,magenta.bold\" \"npm run start:local --prefix karigarji_server\" \"npm run dev:local --prefix karigarji_admin_panel\"",
+    "start:local": "npm run dev",
+    "start:server": "npm run start:local --prefix karigarji_server",
+    "start:admin": "npm run dev:local --prefix karigarji_admin_panel",
+    "start:customer": "npm run start --prefix karigarji_customer",
+    "build:server": "npm run build --prefix karigarji_server",
+    "build:admin": "npm run build --prefix karigarji_admin_panel",
+    "build:all": "npm run build:server && npm run build:admin",
+    "test:server": "npm run test --prefix karigarji_server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

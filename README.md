@@ -10,6 +10,7 @@ It decouples agent operating guidelines, workflow routing, and task tracking fro
 
 ```text
 karigarji_workspace/                        # Meta-Orchestrator Repository (Git Root)
+├── projectContext.md                       # Platform Master Project Context (Executive Vision & Domain Topology)
 ├── .gitignore                              # Strict Allowlist: ignores child repos & dynamic tasks
 ├── AGENTS.md                               # Authoritative operating principles for AI agents
 ├── README.md                               # This setup and architecture guide
@@ -27,9 +28,14 @@ karigarji_workspace/                        # Meta-Orchestrator Repository (Git 
 │       ├── rules/                          # Backend architectural & domain rules
 │       └── suggestions.md                  # Project-scoped tech debt & suggestions registry
 │
-└── karigarji_admin_panel/                  # Independent Git Repo (Frontend - React/Vite)
+├── karigarji_admin_panel/                  # Independent Git Repo (Frontend - React/Vite)
+│   └── .agents/                            # Project-scoped agent context
+│       ├── rules/                          # Frontend design, state & UI rules
+│       └── suggestions.md                  # Project-scoped tech debt & suggestions registry
+│
+└── karigarji_customer/                     # Independent Git Repo (Mobile - React Native / Expo)
     └── .agents/                            # Project-scoped agent context
-        ├── rules/                          # Frontend design, state & UI rules
+        ├── rules/                          # Mobile design, state & native UI rules
         └── suggestions.md                  # Project-scoped tech debt & suggestions registry
 ```
 

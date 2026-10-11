@@ -2,6 +2,9 @@
 
 When operating inside this parent folder, always read and follow the specific coding conventions, naming structures, and design guidelines defined in the Git-tracked sub-directories:
 
+- **Master Workspace Context**:
+  - [Platform Master Project Context](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/projectContext.md): Executive vision, industry problem statement, 5 client platforms + backend engine, service lifecycle, and technology matrix.
+
 - **Backend Repository Rules (karigarji_server)**:
   - [Project Context & Structural Map](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_server/.agents/rules/projectContext.md): System goals, modular domain architecture, tech stack, and structural map.
   - [General Workspace Rules](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_server/.agents/rules/generalRules.md): File/folder naming (camelCase with role suffixes & dots, no hyphens), zero free-text strings, zero debt self-audit, no automated migrations/linting, strict secrets protection.
