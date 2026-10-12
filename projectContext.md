@@ -111,7 +111,7 @@ The Karigarji ecosystem consists of **5 specialized client applications** powere
 * **Core Modules**:
   * **Multi-Workshop Tenancy**: `TeamSwitcher` allowing workshop managers to operate within their assigned branch while headquarters executives maintain global oversight across all cities.
   * **Bookings & Dispatch Board**: Real-time dispatch console matching customer bookings with available certified technicians based on appliance capability matrix (`FieldStaffCapability`) and geo-proximity.
-  * **Service Catalog Studio (`/catalog`)**: Single-screen category hierarchy management, service definitions, multi-variant pricing tiers, and booking rule configuration.
+  * **Service Catalog Studio (`/catalog`)**: Decoupled multi-page studio architecture featuring an interactive hierarchy workspace (`/catalog`) alongside dedicated full-page split-screen editors for services (`/catalog/services/new`, `/catalog/services/:id/edit`) and variants (`/catalog/services/:id/variants/new`, `/catalog/services/:id/variants/:id/edit`) with real-time customer live preview canvases.
   * **Inventory Master & Stock Ledger**: Spare parts catalog (`InventoryItem`), office stock levels, warehouse-to-workshop transfers, and technician van-stock replenishment.
   * **Accounts & Staff Governance (`/accounts/staff`, `/roles`)**: Granular RBAC and PBAC management, corporate staff provisioning, and permission assignment.
   * **Billing, Tax & Financial Reporting**: Automated GST calculation, commercial credit notes, revenue analytics, and technician payout logs.
