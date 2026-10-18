@@ -101,5 +101,33 @@ Before executing any code changes, file creations, or modifications, the agent m
 
 The agent MUST ALWAYS trigger a concise spoken voice summary using the native macOS `say` command (e.g. `say "..." &` in the background) in parallel with every written markdown response—including general conversations, clarifying questions, execution plans, status checks, and task summaries.
 
+## 13. Mandatory Bug-Registry-First Debugging Lifecycle
+
+To maximize debugging velocity, prevent redundant investigative cycles, and eliminate recurring bugs across the workspace, all bug diagnosis and remediation tasks MUST strictly adhere to the following protocol:
+
+- **Project-Specific Bug Registries**: Bug registries are strictly project-specific and reside within each repository's `.agents/` directory (never at the workspace root):
+  - Backend: [`karigarji_server/.agents/bugRegistry.md`](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_server/.agents/bugRegistry.md)
+  - Admin Panel: [`karigarji_admin_panel/.agents/bugRegistry.md`](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_admin_panel/.agents/bugRegistry.md)
+  - Customer Mobile: [`karigarji_customer/.agents/bugRegistry.md`](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_customer/.agents/bugRegistry.md)
+
+1. **Step 0: Check Project Bug Registry First**:
+   - Before launching open-ended exploratory searches, speculative hypotheses, or trial-and-error changes, the agent MUST inspect the target project's registry (`<project>/.agents/bugRegistry.md`).
+   - Match the reported console error, symptom, or UI interaction against documented entries (e.g., `Maximum update depth exceeded`, compound checkbox double-toggles, sheet portal unmount loops).
+   - If a known bug pattern matches, immediately adopt the proven, codified architectural resolution.
+
+2. **Step 1: Disciplined Root-Cause Analysis for Novel Issues**:
+   - If no match exists in the registry, conduct a minimal, evidence-based investigation to determine the exact technical root cause (e.g., React 19 compiler re-render cascades, DOM event bubbling, unhandled promise rejections, transaction isolation levels).
+   - Never apply superficial workarounds or "band-aid" fixes that mask underlying architectural flaws.
+
+3. **Step 2: Proactive Codification in Project Bug Registry**:
+   - As soon as any novel or recurring bug is diagnosed and resolved, the agent MUST immediately record it in the respective project's registry (`<project>/.agents/bugRegistry.md`) with:
+     - Bug ID (`BUG-FE-XXX`, `BUG-BE-XXX`, `BUG-MOB-XXX`), Title, Subsystem, and Symptoms.
+     - Root Cause & Anti-Pattern code snippet.
+     - Standard Resolution code snippet.
+     - Associated file incidents and governing rule references.
+
+4. **Step 3: Subsystem Rule Synchronization**:
+   - In accordance with Section 5 (Continuous Rule Synchronization), update the relevant domain/subsystem rule files (e.g. `reactRules.md`, `formRules.md`, `transportRules.md`) in that project to explicitly forbid the anti-pattern.
+
 
 
