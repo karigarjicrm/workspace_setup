@@ -64,6 +64,8 @@ Before executing any code changes, file creations, or modifications, the agent m
 - Out-of-scope architectural improvements, performance optimizations, or technical debt identified during tasks must be logged in the respective project's registry:
   - Backend: `karigarji_server/.agents/suggestions.md`
   - Frontend: `karigarji_admin_panel/.agents/suggestions.md`
+  - Customer Mobile: `karigarji_customer/.agents/suggestions.md`
+  - Technician Mobile: `karigarji_technician/.agents/suggestions.md`
 - Never mix project suggestions into a shared workspace file, and never store long-term suggestions exclusively in temporary task directories (`tasks/`) to prevent data loss when task directories are cleaned up or deleted.
 - Each suggestion must specify an ID, Target Domain/Component, Rationale, Priority, Status, and Originating Task context.
 
@@ -109,6 +111,7 @@ To maximize debugging velocity, prevent redundant investigative cycles, and elim
   - Backend: [`karigarji_server/.agents/bugRegistry.md`](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_server/.agents/bugRegistry.md)
   - Admin Panel: [`karigarji_admin_panel/.agents/bugRegistry.md`](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_admin_panel/.agents/bugRegistry.md)
   - Customer Mobile: [`karigarji_customer/.agents/bugRegistry.md`](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_customer/.agents/bugRegistry.md)
+  - Technician Mobile: [`karigarji_technician/.agents/bugRegistry.md`](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_technician/.agents/bugRegistry.md)
 
 1. **Step 0: Check Project Bug Registry First**:
    - Before launching open-ended exploratory searches, speculative hypotheses, or trial-and-error changes, the agent MUST inspect the target project's registry (`<project>/.agents/bugRegistry.md`).

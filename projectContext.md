@@ -116,14 +116,16 @@ The Karigarji ecosystem consists of **5 specialized client applications** powere
   * **Accounts & Staff Governance (`/accounts/staff`, `/roles`)**: Granular RBAC and PBAC management, corporate staff provisioning, and permission assignment.
   * **Billing, Tax & Financial Reporting**: Automated GST calculation, commercial credit notes, revenue analytics, and technician payout logs.
 
-### 4.5 Field Technician Mobile App (`karigarji_field_tech`)
-* **Role**: On-ground execution tool for certified service engineers.
+### 4.5 Field Technician Mobile App (`karigarji_technician`)
+* **Role**: Dedicated cross-platform mobile execution tool for certified service engineers and on-field mechanics.
+* **Stack**: React Native 0.86+, React 19, Expo SDK 57 (Continuous Native Generation), Expo Router v57, TanStack Query v5, Zustand, `expo-secure-store`, `@expo/ui`.
 * **Core Features**:
-  * **Daily Dispatch Queue**: Push notifications for newly assigned jobs with customer location, reported fault description, and appliance history.
-  * **Standardized Diagnostic Checklist**: Interactive diagnostic questionnaire per appliance type (e.g., checking AC compressor running current, suction pressure, and coil temperature).
-  * **On-Site Spare Parts Requisition**: Add required spare parts directly from the inventory rate card, instantly sending dispatch requests to logistics runners.
-  * **Digital Proof-of-Work Capture**: Mandatory pre-repair and post-repair photos/videos uploaded directly via presigned URLs.
-  * **Job Sign-Off & Cash/UPI Collection**: Customer digital signature capture and payment confirmation.
+  * **Duty & Shift Management**: Instant toggle between "ON DUTY" and "OFF DUTY", with live shift timers, daily earnings, and completion metrics.
+  * **Strict Linear Lifecycle**: Enforces exact, non-skippable progression (`ASSIGNED` -> `EN_ROUTE` -> `ARRIVED` -> `INSPECTING` -> `WORK_IN_PROGRESS` -> `COMPLETED`).
+  * **Standardized Diagnostic Checklist**: Interactive diagnostic questionnaire per appliance type with pre-service defect photos and post-repair proof-of-work.
+  * **Van Kit Spare Parts Tracking**: Deduct consumed parts directly from technician's vehicle inventory and automatically compute replacement item subtotals.
+  * **Secure Completion & OTP Verification**: Customer phone OTP validation to finalize work and authenticate handoff.
+  * **Biometric-Guarded Financials**: FaceID / Fingerprint step-up authentication (`expo-local-authentication`) for managing bank accounts, UPI IDs, and payout logs.
 
 ### 4.6 Logistics Runner Mobile App (`karigarji_field_runner`)
 * **Role**: Rapid-response logistics client for spare parts runners and workshop couriers.
@@ -215,9 +217,14 @@ karigarji_workspace/                        # Meta-Orchestrator Root
 │   ├── src/app/                            # dashboard, accounts, roles, catalog, bookings
 │   └── .agents/rules/                      # Frontend architecture, state & UI rules
 │
-└── karigarji_customer/                     # Mobile Repository (Customer Expo App)
-    ├── src/app/                            # (auth), (tabs), booking, tracking
-    └── .agents/rules/                      # Mobile rules, React Native & Expo standards
+├── karigarji_customer/                     # Mobile Repository (Customer Expo App)
+│   ├── src/app/                            # (auth), (tabs), booking, tracking
+│   └── .agents/rules/                      # Mobile rules, React Native & Expo standards
+│
+└── karigarji_technician/                   # Mobile Repository (Field Staff Technician Expo App)
+    ├── src/app/                            # (auth), (tabs), jobs, schedule, inventory, profile
+    ├── src/modules/                        # 3-tier domain slices, linear lifecycle policies
+    └── .agents/rules/                      # Technician mobile rules, performance, security, testing
 ```
 
 ---

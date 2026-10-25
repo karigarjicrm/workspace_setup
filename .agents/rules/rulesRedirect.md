@@ -3,6 +3,7 @@
 When operating inside this parent folder, always read and follow the specific coding conventions, naming structures, and design guidelines defined in the Git-tracked sub-directories:
 
 - **Master Workspace Context**:
+  - [Complete Ecosystem Tour Guide](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/.agents/WORKSPACE_TOUR.md): Master architectural blueprint connecting the backend engine, admin operations panel, customer app, and technician app.
   - [Platform Master Project Context](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/projectContext.md): Executive vision, industry problem statement, 5 client platforms + backend engine, service lifecycle, and technology matrix.
 
 - **Backend Repository Rules (karigarji_server)**:
@@ -40,6 +41,18 @@ When operating inside this parent folder, always read and follow the specific co
   - [React, State & Network Rules](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_customer/.agents/rules/reactRules.md): TanStack Query v5 standards (createQueryKeyFactory), 4-tier state separation, Zustand session stores, and hardware-backed SecureStore persistence.
   - [Suggestions Registry](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_customer/.agents/suggestions.md): Persistent customer mobile architectural backlog and optimizations.
   - [Bug Registry](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_customer/.agents/bugRegistry.md): Persistent customer mobile runtime bug registry and anti-pattern catalog.
+- **Technician Mobile App Repository Rules (karigarji_technician)**:
+  - [Project Context](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_technician/.agents/rules/projectContext.md): System goals, mobile architecture, Expo SDK 57, linear job lifecycle, and structural map.
+  - [General Workspace Rules](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_technician/.agents/rules/generalRules.md): File naming (camelCase with role suffixes & dots, no hyphens), Continuous Native Generation (CNG), and self-audit criteria.
+  - [Architecture & Layer Boundary Rules](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_technician/.agents/rules/architectureRules.md): 3-tier domain slicing, thin src/app/ route coordinators, strict linear job lifecycle policy, and single scroll authority.
+  - [React Native & Mobile Standards](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_technician/.agents/rules/reactNativeRules.md): Anti-deprecation matrix (strict ban on RN SafeAreaView, vector-icons, AsyncStorage JWTs), dual-platform icon system, safe areas, and haptics.
+  - [Form Handling & Validation Rules](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_technician/.agents/rules/formRules.md): 3-tier form architecture (Zod schemas, use<Domain>Form hooks, sticky action bars, SMS auto-fill, and numeric keypad bindings).
+  - [Network & API Communication Rules](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_technician/.agents/rules/networkRules.md): Native fetch client, hardware-backed SecureStore token manager, mutex 401 refresh queue, and TanStack Query v5 with query key factories.
+  - [Mobile Performance & Hardware Optimization Rules](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_technician/.agents/rules/performanceRules.md): Zero OOM image downscaling, list virtualization (FlashList/FlatList), GPS throttling, and expo-image caching.
+  - [Security, PII Protection & Authentication Rules](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_technician/.agents/rules/securityRules.md): Hardware Keystore (expo-secure-store), customer PII eviction, biometric step-up authentication, and app snapshot masking.
+  - [Testing Architecture & Standards](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_technician/.agents/rules/testingRules.md): Testing pyramid, 100% unit test coverage for pure lifecycle policies and calculators, native Expo module mocks, and verification gates.
+  - [Suggestions Registry](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_technician/.agents/suggestions.md): Persistent technician mobile architectural backlog and optimizations.
+  - [Bug Registry](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/karigarji_technician/.agents/bugRegistry.md): Persistent technician mobile runtime bug registry and anti-pattern catalog.
 - **Shared Workspace Skills (`.agents/skills/*`)**:
   - [Archify Diagramming Skill](file:///Users/karigarji/Documents/Yaantriki/repos/karigarji_workspace/.agents/skills/archify/SKILL.md): Interactive system architecture, sequence, workflow, dataflow, and lifecycle diagramming engine. Produces standalone HTML artifacts with SVG rendering, route tracing, and theme toggling.
 
