@@ -47,10 +47,10 @@ Before executing any code changes, file creations, or modifications, the agent m
 - Strictly adhere to the workspace conventions referenced in `.agents/rules/rulesRedirect.md` (for backend and frontend architecture).
 - Proactively suggest architectural improvements and optimizations; discuss them first and document suggestions in `steps.md` and conversations in `logs.md`.
 
-## 5. Continuous Rule & Context Synchronization
+## 5. Continuous Rule, Context & Planning Synchronization
 
-- Whenever architectural decisions, conventions, or design patterns are discussed and agreed upon with the user, immediately synchronize and update the authoritative rules (`.agents/rules/*`) and context documentation.
-- Never let rules or context files become stale or contradict agreed-upon architectural patterns.
+- **Immediate Synchronization on User Insights**: Whenever the user points out an important architectural angle, missing perspective, domain nuance, or rule that is not documented or covered in planning artifacts and context files, the agent MUST immediately update and synchronize the relevant authoritative rules (`.agents/rules/*`), context files, and active planning specifications. Never delay this or assume it can be remembered across sessions.
+- **Zero Stale Documentation**: Whenever architectural decisions, conventions, or design patterns are discussed and agreed upon with the user, immediately synchronize and update the authoritative rules (`.agents/rules/*`) and context documentation. Never let rules or context files become stale, incomplete, or contradict agreed-upon architectural patterns.
 
 ## 6. Critical & Objective Engineering Partnership (Zero Sycophancy)
 
@@ -81,7 +81,8 @@ Before executing any code changes, file creations, or modifications, the agent m
   - **Zero Raw Framework HTTP Exceptions**: No direct NestJS HTTP exceptions (`BadRequestException`, `NotFoundException`, `UnauthorizedException`, etc.) in domain services or guards; all failures must be explicit domain exceptions extending `BaseDomainException` and residing in matching 1:1 service-scoped `<serviceName>.exceptions.ts` files.
   - **Clean 3-Tier Return Contracts**: Domain services must return pure domain data or `Promise<void>`—never fabricating HTTP pseudo-envelopes (`{ success: true }`, `{ message: '...' }`).
   - **OpenAPI / Swagger Envelope Synchronization**: Composite decorators (`@ApiSuccessResponseEnvelope`, `@ApiAuthResponses`, `@ApiDomainErrorResponse`) must be applied across all controller endpoints with proper pagination flags and DTO types.
-  - **Automated Verification**: Build compilation (`npm run build`) and test suites (`npm test`, `npm run test:flow:local`) must pass with 0 failures before any handoff.
+  - **Automated Verification**: Build compilation (`npm run build`) and test suites (`npm test`, `npm run test:flow:local` for server; `npm run test:flows` for frontend Playwright basic interaction smoke tests) must pass with 0 failures before any handoff. Never hand over unverified or frozen UI.
+  - **Mandatory Playwright Basic Interaction Smoke Tests (Frontend)**: Every new frontend feature slice, drawer, or interactive form MUST have a lightweight Playwright test in `e2e/modules/**` verifying that buttons open dialogs, mode pills/tabs toggle reactively without freezing (`BUG-FE-011`), and basic inputs accept values. Keep tests fast and focused on interaction smoke checks without slowing down velocity.
   - **Authoritative Rules & Docs Sync**: Rules (`.agents/rules/*`), context files, and task trackers (`tasks/`) must be updated in tandem with code changes.
 - **Proactive Fix-On-The-Go**: If any violations, regressions, drift, or omissions are detected during self-audit, the agent MUST fix them immediately within the active task before reporting completion to the user. Never leave standard violations or tech debt behind for the user to discover.
 
@@ -131,6 +132,43 @@ To maximize debugging velocity, prevent redundant investigative cycles, and elim
 
 4. **Step 3: Subsystem Rule Synchronization**:
    - In accordance with Section 5 (Continuous Rule Synchronization), update the relevant domain/subsystem rule files (e.g. `reactRules.md`, `formRules.md`, `transportRules.md`) in that project to explicitly forbid the anti-pattern.
+
+## 14. Milestone Lifecycle & Large Change Decomposition Protocol
+
+When a planned feature or refactoring represents a significant architectural initiative (spanning multiple modules, crossing backend/frontend boundaries, or introducing systemic domain changes), it must NOT be executed as a single giant, unbounded task or treated as an unconfirmed suggestion. Instead, it must follow the **Milestone Decomposition Protocol**:
+
+1. **Persistent Milestone Registries (`<project>/.agents/milestones.md`)**:
+   - Reside directly alongside `suggestions.md` in each project repository:
+     - Backend: `karigarji_server/.agents/milestones.md`
+     - Admin Panel: `karigarji_admin_panel/.agents/milestones.md`
+     - Customer Mobile: `karigarji_customer/.agents/milestones.md`
+     - Technician Mobile: `karigarji_technician/.agents/milestones.md`
+   - Tracks confirmed, architecturally planned initiatives that are scoped, agreed upon, and broken into sequential sub-tasks (distinguished from exploratory suggestions in `suggestions.md` and short-lived execution state in `tasks/`).
+   - Each milestone entry records:
+     - **Milestone ID** (e.g., `MLS-BE-INV-001`, `MLS-FE-INV-001`), Title, Target Domain, Status (`PLANNED`, `IN_PROGRESS`, `COMPLETED`), and Scope Summary.
+     - **Decomposed Sub-Task Sequence**: Itemized, sequentially ordered micro-tasks with explicit dependencies and verification criteria.
+
+2. **Decomposition into Discrete Micro-Tasks (`tasks/<task-name>/`)**:
+   - Rather than one monolithic task, each milestone sub-task is executed as its own dedicated task folder:
+     - Backend micro-tasks: `tasks/<milestone-prefix>-be-<subtask-name>/`
+     - Frontend micro-cards: `tasks/<milestone-prefix>-fe-<subtask-name>/`
+   - Keeps context clean, test suites fast, diffs inspectable, and prevents context compaction loss.
+
+3. **Strict Sequential Execution & Pre-Implementation Analysis Rules**:
+   - **One Sub-Task at a Time**: Never execute multiple sub-tasks simultaneously or jump ahead across layers.
+   - **Mandatory Pre-Implementation Analysis**: For each sub-task, before touching code:
+     - Deep-dive into that specific sub-task's domain logic, affected files, and boundary contracts.
+     - Present the detailed technical solution and verification plan to the user.
+     - Obtain user confirmation before modifying files.
+   - **Self-Audit & Milestone Sync Before Next**: Once a sub-task passes Section 9 self-audit (`npm run build`, tests passing, 0 debt), update both the sub-task's `steps.md` and the parent milestone tracker (`<project>/.agents/milestones.md`), then advance to the next sub-task.
+
+## 15. Continuous Native Generation (CNG) & Zero Manual Native Folder Edits Policy
+
+- **Ephemeral Native Directories**: For all mobile repositories (`karigarji_technician`, `karigarji_customer`, and future apps), the native platform directories (`/android`, `/ios`) are ephemeral generated build artifacts and must remain strictly git-ignored.
+- **`app.json` as Single Source of Truth**: All native capabilities, permissions, build configurations, and third-party SDK plugins (e.g. Firebase / Google Services, notification channels, cleartext HTTP policies, deep link schemes) must be declared exclusively in `app.json` or via authoritative Expo Config Plugins (`expo-build-properties`, etc.).
+- **Zero Manual Native Folder Edits**: Direct manual modifications to files inside `android/` or `ios/` are strictly prohibited. The entire native project must remain deterministically regenerable at any time via `npx expo prebuild --clean` with zero loss of configuration or manual re-patching.
+
+
 
 
 
